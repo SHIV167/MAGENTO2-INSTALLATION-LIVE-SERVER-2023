@@ -1,0 +1,44 @@
+Magento2 INSTALLATION SERVER  2023
+
+STEP 1: https://www.linuxbabe.com/mariadb/install-mariadb-ubuntu-18-04-18-10
+
+STEP 2: https://www.mgt-commerce.com/tutorial/how-to-install-magento-2-4-4-on-ubuntu-20-04/
+
+
+STEP 3:
+bin/magento setup:install \
+--base-url=http://13.233.186.3 \
+--db-host=localhost \
+--db-name=magentodb \
+--db-user=root \
+--db-password=Shiv@123 \
+--admin-firstname=admin \
+--admin-lastname=admin \
+--admin-email=admin@admin.com \
+--admin-user=admin \
+--admin-password=admin123 \
+--language=en_US \
+--currency=USD \
+--timezone=America/Chicago \
+--use-rewrites=1
+
+
+STEP 4:
+upstream fastcgi_backend {
+server unix:/run/php/php8.1-fpm.sock;
+}
+
+server {
+server_name 13.233.186.3;
+listen 80;
+set $MAGE_ROOT /magento2;
+set $MAGE_MODE developer; # or production
+
+access_log /var/log/nginx/magento2-access.log;
+error_log /var/log/nginx/magento2-error.log;
+
+include /magento2/nginx.conf.sample;
+}
+
+Note: default File server should be blank PATH and FASTCGI should be configured along with index.php included. 
+
