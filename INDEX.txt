@@ -42,3 +42,49 @@ include /magento2/nginx.conf.sample;
 
 Note: default File server should be blank PATH and FASTCGI should be configured along with index.php included. 
 
+sudo nginx -t
+sudo systemctl reload nginx
+
+
+sudo systemctl restart nginx
+sudo systemctl status nginx
+
+
+- Install phpMyAdmin
+Create the new folder named phpmyadmin in the path /var/www/html/
+mkdir phpmyadmin
+
+Download phpMyAdmin: 
+wget https://files.phpmyadmin.net/phpMyAdmin-4.8.5-all-languages.zip
+wget https://files.phpmyadmin.net/phpMyAdmin/4.9.7/phpMyAdmin-4.9.7-all-languages.tar.gz
+unzip phpMyAdmin-4.8.5-all-languages.zip
+
+Create a new virtual host for accessing to phpmyadmin
+nano /etc/nginx/sites-available/phpmyadmin
+server {
+    listen 9000;
+    root /var/www/html/phpmyadmin/phpMyAdmin-4.9.7-all-languages;
+    server_name localhost;
+    index index.php index.html index.htm;
+
+    location / {
+       try_files $uri $uri/ /index.php?$args;
+    }
+
+    location ~ \.php$ {
+       include snippets/fastcgi-php.conf;
+       fastcgi_pass unix:/run/php/php8.1-fpm.sock;
+    }
+    location ~ /\.ht {
+       deny all;
+    }
+}
+ln -s /etc/nginx/sites-available/phpmyadmin /etc/nginx/sites-enabled
+- Restart Nginx:
+nginx -t
+service nginx restart
+netstat -plnt
+3306 is of mysql service
+9000 of the phpmyadmin site
+
+https://www.digitalocean.com/community/tutorials/how-to-install-phpmyadmin-from-source-debian-10
