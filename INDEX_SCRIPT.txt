@@ -88,3 +88,7 @@ netstat -plnt
 9000 of the phpmyadmin site
 
 https://www.digitalocean.com/community/tutorials/how-to-install-phpmyadmin-from-source-debian-10
+
+https://magentip.com/install-and-configure-varnish-cache-magento-2/
+
+
