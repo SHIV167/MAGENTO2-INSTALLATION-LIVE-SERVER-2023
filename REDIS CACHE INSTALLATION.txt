@@ -1,0 +1,56 @@
+https://www.mgt-commerce.com/tutorial/how-to-setup-redis-cache-for-magento-2/
+
+
+Hi everybody, I am Cuong, Welcome back to my Magento 2 tutorial video series.
+#magento #magento2 #magento2tutorial #redis
+When you work with Magento 2, the cache is very important. It is one of the most effective ways to improve website performance. 
+
+Magento recommends using Varnish, but you can use the following cache backends to speed up your website:
+
+1. File system: This is the default, no configuration is necessary to use file system caching. All the cache files will be saved in the path var/cache or var/page_cache
+
+2. Database: The caching objects are stored in the cache and cache_tag Magento 2 database tables. If you want to use this caching type, please see this link https://devdocs.magento.com/guides/v2...
+
+3. Redis: This is popular, almost all Magento 2 websites are using this caching type to improve website performance.
+
+In today's practice, I am going to share with everybody on How to install Redis and configure Magento to use Redis for session storage on Ubuntu.
+
+My website is using the default cache of Magento 2, that is the file system.
+
+For now, I will change it to the Redis cache.
+
+Okie, let's go.
+
+Let's do this practice, you need to follow steps by step:
+
+Step 1: Install Redis cache on Ubuntu.
+- cat /etc/*release
+I have Ubuntu 18.04 on my server.
+- Install Redis cache
+apt-get install redis-server
+- Verify that Redis is running on your server
+1. service redis status
+2. redis-cli ping
+PONG should be the response.
+3. Check the port is used for Redis
+netstat -plnt
+It is 6379
+
+Step 2: Configure Magento to use Redis for session storage.
+- Edit the file app/etc/env.php and add the following codes
+- If you have multiple websites are using Redis cache on your server, you should change the value of "database" to another number. It is not allowed to duplicate on all websites.
+
+Step 3: Test and See the result.
+- Delete the folders var/cache and var/page_cache
+- Access to the homepage, then check these folders. If Magento 2 doesn't generate these folders again. So Redis cache is applied to your website.
+- I see my website is loaded faster than.
+- Redis monitor command: redis-cli monitor
+- Warning: After you use Redis cache for your website. Please don't use "php bin/magento cache:flush". If you use this command line, all the sessions for your website will be cleaned, so the customer will be logged out. You can use this command line as well "php bin/magento cache:clean"
+
+Yeah! It works perfectly.
+
+Thank you for your watching. If you have any questions about this practice, please feel free to leave a comment below.
+
+Don't forget to like, comment, share my videos and subscribe to my channel for getting the latest videos.
+
+Please do not hesitate to contact me, if you need me to join your Magento project. My rate is $25/hour in Magento 1 and $30/hour in Magento 2.
