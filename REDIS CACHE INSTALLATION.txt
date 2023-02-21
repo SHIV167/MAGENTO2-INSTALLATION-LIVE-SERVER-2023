@@ -1,3 +1,50 @@
+
+In this video we will cover how to install Redis with Magento 2. We're using a base install of both Redis and Magento 2 on an Alpha Hosting Mercury package for the demo. 
+
+I've included the commands we run in our terminal window and links to the Magento documentation we reference below. 
+
+Here's the process;
+
+- We always suggest making changes like this on a staging or development site. Setting up caching on a live site can be dangerous. At least make a quick backup of your site. 
+
+- You'll need to install Redis. At Alpha Hosting that's a quick button click from the client portal. 
+
+- Next, open a terminal window and login to the server. I'm using the cPanel terminal window, but feel free to use the terminal client of your choice. 
+
+- In the terminal window navigate to your Magento 2 home directory. 
+
+- We'll need to edit the env.php file so that Magento 2 knows to use Redis for default, page, and session caching. Let's make a quick copy of that file first using the following command:
+
+cp /app/etc/env.php /app/etc/old.env.php
+
+- Next we'll edit the env.php file using a series of commands. It's best to use commands instead of inline editing of the file. Using commands you won't mess up the syntax and you'll get a confirmation message when you're done. You can find these commands along with more info about Redis and Magento on the Magento DevDocs Site. 
+
+(https://devdocs.magento.com/guides/v2... and https://devdocs.magento.com/guides/v2...)
+
+- Run the following command for setting up Redis as the default cache:
+
+bin/magento setup:config:set --cache-backend=redis --cache-backend-redis-server=127.0.0.1 --cache-backend-redis-db=0
+
+- Run the following command for setting up Redis as the page cache:
+
+bin/magento setup:config:set --page-cache=redis --page-cache-redis-server=127.0.0.1 --page-cache-redis-db=1
+
+- Run the following command for setting up Redis as the session cache:
+
+bin/magento setup:config:set --session-save=redis --session-save-redis-host=127.0.0.1 --session-save-redis-log-level=4 --session-save-redis-db=2
+
+That's it! You can run some test commands outlined in the DevDocs we linked above to confirm everything is setup correctly. In the video I do a very basic test visiting a page twice to show a speed enhancement. 
+
+We hope this video helps. 
+
+Please like and subscribe for more WooCommerce, WordPress, and Magento How To's:
+https://www.youtube.com/channel/UCDxa...
+
+
+
+
+=====================================================================================================================================================================
+========================================================================================SECOND OPTION================================================================
 https://www.mgt-commerce.com/tutorial/how-to-setup-redis-cache-for-magento-2/
 
 
