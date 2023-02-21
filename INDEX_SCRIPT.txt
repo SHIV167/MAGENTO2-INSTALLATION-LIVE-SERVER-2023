@@ -91,4 +91,4 @@ https://www.digitalocean.com/community/tutorials/how-to-install-phpmyadmin-from-
 
 https://magentip.com/install-and-configure-varnish-cache-magento-2/
 
-
+https://www.rosehosting.com/blog/magento-2-with-redis-varnish-and-nginx-as-ssl-termination/
