@@ -19,7 +19,7 @@ cp /app/etc/env.php /app/etc/old.env.php
 
 - Next we'll edit the env.php file using a series of commands. It's best to use commands instead of inline editing of the file. Using commands you won't mess up the syntax and you'll get a confirmation message when you're done. You can find these commands along with more info about Redis and Magento on the Magento DevDocs Site. 
 
-(https://devdocs.magento.com/guides/v2... and https://devdocs.magento.com/guides/v2...)
+(https://experienceleague.adobe.com/docs/commerce-operations/configuration-guide/cache/redis/redis-pg-cache.html AND https://experienceleague.adobe.com/docs/commerce-operations/configuration-guide/cache/redis/redis-session.html)
 
 - Run the following command for setting up Redis as the default cache:
 
